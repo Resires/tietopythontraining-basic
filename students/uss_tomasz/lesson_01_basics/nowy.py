@@ -3,24 +3,24 @@ from math import ceil
 https://snakify.org/lessons/print_input_numbers/problems/
 '''
 # Problem Sum of three numbers
-number_1 = int(input("First number = "))
-number_2 = int(input("Second number = "))
-number_3 = int(input("Third number = "))
+adding_number_1 = int(input("First number for adding = "))
+adding_number_2 = int(input("Second number for adding= "))
+adding_number_3 = int(input("Third number for adding= "))
 
-print("Sum of them is", number_1 + number_2 + number_3)
+print("Sum of them is", adding_number_1 + adding_number_2 + adding_number_3)
 
 # Problem Hi John
 name = input("What is your name?")
 print("Hi", name)
 
 # Problem Square
-variable = int(input("Input variable = "))
-print("Squared = ", variable ** 2)
+variable_before_square = int(input("Input variable which will be squared= "))
+print("Squared = ", variable_before_square ** 2)
 
 # Problem Area of right-angled triangle
-baseLenght = float(input("Length of triangle base = "))
+base_length = float(input("Length of triangle base = "))
 height = float(input("Height of triangle = "))
-print("Area of triangle is", baseLenght * height / 2)
+print("Area of triangle is", base_length * height / 2)
 
 # Problem Hello, Harry!
 name = input("What is your name?")
@@ -51,10 +51,12 @@ earlier_seconds = 3600 * earlier_h + 60 * earlier_m + earlier_s
 print("Seconds difference = ", later_seconds - earlier_seconds)
 
 # Problem School desks
-a = int(input("Students in first class = "))
-b = int(input("Students in second class = "))
-c = int(input("Students in third class = "))
-print("Desks needed = ", ceil(a / 2) + ceil(b / 2) + ceil(c / 2))
+students_counts = [
+    int(input("Students in first class = ")),
+    int(input("Students in second class = ")),
+    int(input("Students in third class = ")),
+]
+print("Desk needed = ", sum([ceil(count / 2) for count in students_counts]))
 
 '''
 https://snakify.org/lessons/integer_float_numbers/problems/
@@ -69,12 +71,12 @@ print("Digit of tenths of ", variable, "is", variable % 100 // 10)
 
 # Problem Sum of digits
 variable = int(input("Variable made of three digits = "))
-sum = variable % 10
+sum_of_digits = variable % 10
 variable = variable // 10
-sum += variable % 10
+sum_of_digits += variable % 10
 variable = variable // 10
-sum += variable
-print("Sum of digits = ", sum)
+sum_of_digits += variable
+print("Sum of digits = ", sum_of_digits)
 
 # Problem Fractional part
 variable = float(input("Float variable = "))
