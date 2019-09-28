@@ -52,7 +52,7 @@ y_start = int(input("Starting Row of queen movement"))
 x_finish = int(input("Finishing Column of queen movement"))
 y_finish = int(input("Finishing Row of queen movement"))
 
-if (abs(x_finish - x_start) == abs(y_finish - y_start)) or (x_start == x_finish or y_start == y_finish):
+if abs(x_finish - x_start) == abs(y_finish - y_start) or x_start == x_finish or y_start == y_finish:
     print("YES")
 else:
     print("NO")
@@ -94,7 +94,7 @@ https://snakify.org/lessons/for_loop_range/problems/
 # Problem Factorial
 n = int(input("Number for factorial calculation"))
 factorial = 1
-for i in range(1, n + 1):
+for i in range(2, n + 1):
     factorial *= i
 print("Factorial is ", factorial)
 
@@ -102,7 +102,7 @@ print("Factorial is ", factorial)
 quantity = int(input("How many numbers do you want to check?"))
 zeros_counter = 0
 for i in range(quantity):
-    variable = int(input("Number to check is it 0"))
+    variable = int(input("Number to check (is it 0):"))
     if variable == 0:
         zeros_counter += 1
 print("Zero counted: ", zeros_counter)
@@ -116,21 +116,23 @@ for i in range(n - 1, 0, -1):
 print("Total sum of following factorials is ", factorial_sum)
 
 # Problem Ladder
-n = int(input("Ladder steps [between 1 and 9] = "))
-for k in range(1, n + 1):
-    for j in range(1, k + 1):
-        print(j, end='')
+ladder_height = int(input("Ladder steps [between 1 and 9] = "))
+for row in range(1, ladder_height + 1):
+    for column in range(1, row + 1):
+        print(column, end='')
     print()
 
 # Problem Lost card
 N = int(input("Cards quantity = "))
-table = [0 for i in range(N)]
-for i in range(1, N):
-    card = int(input("Enter new card (not present in list of already entered cards"))
-    table[card - 1] = 1
-for i in range(N):
-    if table[i] == 0:
-        print("Missing card is ", i + 1)
+table = [i+1 for i in range(N)]
+while len(table) > 1:
+    card = int(input("Enter new card (not present in list of already entered cards)"))
+    try:
+        table.remove(card)
+    except ValueError:
+        print("This card was already eliminated. Select another one")
+print("Missing card is ", table[0])
+
 
 '''
 https://snakify.org/lessons/while_loop/problems/
