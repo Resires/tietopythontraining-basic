@@ -20,6 +20,21 @@ def collect_variables():
     return var_1, var_2
 
 
+def execute_command(command_name, function_type):
+    """
+    Param:
+        command_name - string. this value will be displayed for user in order to identify which command was performed
+        function_type - lambda function. containing two arguments and relations between them. Normally it is adding,
+        subtracting, multiplying, dividing or power.
+    Returns:
+        Value is calculated based on two operands from user input and lambda function.
+    """
+    print(command_name)
+    operand1, operand2 = collect_variables()
+    print("Result:")
+    print(function_type(operand1, operand2))
+
+
 print("Welcome to organized calculator:")
 display_options()
 while True:
@@ -27,34 +42,19 @@ while True:
     option = input()
 
     if option == "a":
-        print("ADDING")
-        (add_var_1, add_var_2) = collect_variables()
-        print("Result:")
-        print(add_var_1 + add_var_2)
+        execute_command("ADDING", lambda a, b: a + b)
 
     if option == "s":
-        print("SUBTRACT")
-        (add_var_1, add_var_2) = collect_variables()
-        print("Result:")
-        print(add_var_1 - add_var_2)
+        execute_command("SUBTRACT", lambda a, b: a - b)
 
     if option == "m":
-        print("MULTIPLY")
-        (add_var_1, add_var_2) = collect_variables()
-        print("Result:")
-        print(add_var_1 * add_var_2)
+        execute_command("MULTIPLY", lambda a, b: a * b)
 
     if option == "d":
-        print("DIVIDE")
-        (add_var_1, add_var_2) = collect_variables()
-        print("Result:")
-        print(add_var_1 / add_var_2)
+        execute_command("DIVIDE", lambda a, b: a / b)
 
-    if option == "p":
-        print("POWER")
-        (add_var_1, add_var_2) = collect_variables()
-        print("Result:")
-        print(add_var_1 ** add_var_2)
+    if option == 'p':
+        execute_command("POWER", lambda a, b: a ** b)
 
     if option == "h" or option == "?":
         display_options()

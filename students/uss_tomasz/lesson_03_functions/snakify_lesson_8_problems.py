@@ -12,14 +12,17 @@ first_point_x = int(input("First point, x coordinate = "))
 first_point_y = int(input("First point, y coordinate = "))
 second_point_x = int(input("Second point, x coordinate = "))
 second_point_y = int(input("Second point, y coordinate = "))
-print("Distance between ({0},{1}) and ({2},{3}) equals {4}".format(first_point_x,
-                                                                   first_point_y,
-                                                                   second_point_x,
-                                                                   second_point_y,
-                                                                   distance(first_point_x,
-                                                                            first_point_y,
-                                                                            second_point_x,
-                                                                            second_point_y)))
+format_args = [
+    first_point_x,
+    first_point_y,
+    second_point_x,
+    second_point_y,
+    distance(first_point_x,
+             first_point_y,
+             second_point_x,
+             second_point_y)
+]
+print("Distance between ({},{}) and ({},{}) equals {}".format(*format_args))
 
 
 # Problem Negative exponent
