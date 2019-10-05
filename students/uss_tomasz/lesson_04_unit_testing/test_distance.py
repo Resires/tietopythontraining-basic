@@ -34,15 +34,3 @@ def test_difference_on_both_coordinates():
 
 def test_order_of_operations():
     assert distance(1, 2, 3, 4) == distance(4, 3, 2, 1)
-
-
-'''
-class TestDistanceFunction(unittest.TestCase):
-    def test_wrong_type_calling_on_none(self):
-        with self.assertRaises(TypeError):
-            distance(None, None, None, None)
-
-    def test_wrong_type_calling_on_string(self):
-        with self.assertRaises(TypeError):
-            distance('string1', 'string2', 'string3', 'string4')
-'''
