@@ -1,5 +1,5 @@
 # Problem Age calculator
-from random import randint
+from random import randint, seed
 
 
 def age_calculator(peoples_age_list):
@@ -13,6 +13,7 @@ def age_calculator(peoples_age_list):
     return average_adult, children_count
 
 
+seed(1)
 group_of_people = [randint(1, 30) for i in range(10)]
 print("Randomly chosen group of people (age) = ", group_of_people)
 print("Average adult is {0[0]:.2f} years ald. "

@@ -1,5 +1,5 @@
 # https://snakify.org/lessons/lists/problems/
-from random import randint
+from random import randint, seed
 from collections import OrderedDict
 
 
@@ -15,6 +15,7 @@ def quantity_of_bigger_than_both_neighbours(list_from_user):
     return quantity
 
 
+seed(1)
 list_for_test = remove_duplicates([randint(1, 10) for i in range(10)])
 print("Tested list = ", list_for_test)
 

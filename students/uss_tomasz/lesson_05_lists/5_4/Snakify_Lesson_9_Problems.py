@@ -1,17 +1,18 @@
 # https://snakify.org/lessons/two_dimensional_lists_arrays/problems/
-from random import randint
+from random import randint, seed
 # Problem Maximum
-rows_quantity = 6
-columns_quantity = 4
-array = [[randint(1, 30) for i in range(columns_quantity)] for j in range(rows_quantity)]
+ROWS_QUANTITY = 6
+COLUMNS_QUANTITY = 4
+seed(1)
+array = [[randint(1, 30) for i in range(COLUMNS_QUANTITY)] for j in range(ROWS_QUANTITY)]
 print("Tested array:")
 for row in array:
     print(row)
 x_index_of_maximum = 0
 y_index_of_maximum = 0
 maximum = 0
-for i in range(rows_quantity):
-    for j in range(columns_quantity):
+for i in range(ROWS_QUANTITY):
+    for j in range(COLUMNS_QUANTITY):
         if array[i][j] > maximum:
             maximum = array[i][j]
             x_index_of_maximum = i
@@ -36,9 +37,9 @@ def print_matrix(matrix_from_user):
         print()
 
 
-rows_quantity = 4
-columns_quantity = 6
-A = [[i * 10 + j for i in range(rows_quantity)] for j in range(columns_quantity)]
+ROWS_QUANTITY = 4
+COLUMNS_QUANTITY = 6
+A = [[i * 10 + j for i in range(ROWS_QUANTITY)] for j in range(COLUMNS_QUANTITY)]
 print("New task - Replace column. Original matrix:")
 print_matrix(A)
 print("Replaced:")
