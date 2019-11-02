@@ -1,10 +1,10 @@
-CODE_LINES = ['this is the first line of code',
+code_lines = ['this is the first line of code',
               'this is the second line of code',
               'this is the third line of code']
-SET_OF_WORDS = set()
-for sentence in CODE_LINES:
+set_of_words = set()
+for sentence in code_lines:
     list_of_words = sentence.split()
     for word in list_of_words:
-        SET_OF_WORDS.add(word)
-print("Distinct words in text:", SET_OF_WORDS)
-print("Number of distinct words in text:", len(SET_OF_WORDS))
+        set_of_words.add(word)
+print("Distinct words in text:", set_of_words)
+print("Number of distinct words in text:", len(set_of_words))

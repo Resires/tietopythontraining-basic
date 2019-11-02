@@ -12,7 +12,7 @@ def add_to_inventory(inventory, added_items):
         if item in inventory:
             inventory[item] += 1
         else:
-            inventory.setdefault(item, 1)
+            inventory[item] = 1
     return inventory
 
 
@@ -20,9 +20,9 @@ if __name__ == '__main__':
     player_inv = {'gold coin': 42,
                   'rope': 1}
     dragon_loot = ['gold coin',
-                  'dagger',
-                  'gold coin',
-                  'gold coin',
-                  'ruby']
+                   'dagger',
+                   'gold coin',
+                   'gold coin',
+                   'ruby']
     inv = add_to_inventory(player_inv, dragon_loot)
     display_inventory(player_inv)

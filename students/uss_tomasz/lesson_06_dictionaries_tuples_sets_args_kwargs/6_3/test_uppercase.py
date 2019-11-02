@@ -13,8 +13,8 @@ class TestUppercase(unittest.TestCase):
         self.assertEqual(capitalize(''), '')
 
     def test_wrong_input(self):
-        self.assertEqual(capitalize(1234), False)
+        self.assertEqual(capitalize(1234), None)
 
 
-if __name__ == unittest.main():
-    TestUppercase()
+if __name__ == '__main__':
+    unittest.main()

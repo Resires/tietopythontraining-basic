@@ -1,12 +1,12 @@
-COUNTRY_WITH_CITIES = {'Poland': ['Cracow', 'Warsaw', 'Swidnica', 'Sieradz'],
+country_with_cities = {'Poland': ['Cracow', 'Warsaw', 'Swidnica', 'Sieradz'],
                        'Russia': ['Moskow', 'Peterburg'],
                        'Italy': ['Rome', 'Torino', 'Milano']}
-CITIES_TO_FIND = ['Moskow',
+cities_to_find = ['Moskow',
                   'Warsaw',
                   'Rome']
-TRANSFORMATED_CITIES_LIST = {}
-for country in COUNTRY_WITH_CITIES:
-    for city in COUNTRY_WITH_CITIES[country]:
-        TRANSFORMATED_CITIES_LIST[city] = country
-for city in CITIES_TO_FIND:
-    print(city, 'is located in', TRANSFORMATED_CITIES_LIST[city])
+transformated_cities_list = {}
+for country in country_with_cities:
+    for city in country_with_cities[country]:
+        transformated_cities_list[city] = country
+for city in cities_to_find:
+    print(city, 'is located in', transformated_cities_list[city])

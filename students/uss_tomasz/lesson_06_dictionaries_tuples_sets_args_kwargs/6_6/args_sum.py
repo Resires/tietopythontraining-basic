@@ -1,8 +1,8 @@
-def sum_all(*args):
-    total = 0
-    for i in args:
-        total += i
-    return total
+from functools import reduce
 
 
-print(sum_all(1, 2, 4))
+def do_sum(x1, x2):
+    return x1 + x2
+
+
+print(reduce(do_sum, [1, 2, 3, 4]))
