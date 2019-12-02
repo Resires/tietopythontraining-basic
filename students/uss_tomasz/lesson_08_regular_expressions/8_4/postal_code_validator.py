@@ -1,13 +1,9 @@
 import re
+POSTAL_REGEX = re.compile(r'\d\d-\d\d\d')
 
 
 def is_postal_code(code):
-    postal_regex = re.compile(r'\d\d-\d\d\d')
-    results = re.findall(postal_regex, code)
-    if len(results) == 0:
-        return False
-    else:
-        return True
+    return re.match(POSTAL_REGEX, code) is not None
 
 
 postal_codes = ['90-210', '90*210', '997-', '-666']
