@@ -9,26 +9,37 @@ import pyperclip
 import shelve
 import sys
 mcb_shelf = shelve.open('mcb')
-if len(sys.argv) == 3:
-    # Save clipboard content
-    if sys.argv[1].lower() == 'save':
-        mcb_shelf[sys.argv[2]] = pyperclip.paste()
-    # Delete keyword from shelve
-    elif sys.argv[1].lower() == 'delete':
-        try:
-            del(mcb_shelf[sys.argv[2]])
-        except KeyError:
-            print('"{}" does not exist'.format(sys.argv[2]))
-elif len(sys.argv) == 2:
-    # List keywords and load content
-    if sys.argv[1].lower() == 'list':
-        pyperclip.copy(str(list(mcb_shelf.keys())))
-    # Delete all content from shelve
-    elif sys.argv[1].lower() == 'delete':
-        mcb_shelf.clear()
-    # Loads keyword to clipboard
-    elif sys.argv[1] in mcb_shelf:
-        pyperclip.copy(mcb_shelf[sys.argv[1]])
+if len(sys.argv) < 2:
+    print('Missing command')
 else:
-    print('Wrong command.')
+    command = sys.argv[1].lower()
+    if command == 'save':
+        if len(sys.argv) == 2:
+            print('Missing keyword for saving')
+        elif len(sys.argv) == 3:
+            # Save clipboard content
+            mcb_shelf[sys.argv[2]] = pyperclip.paste()
+        else:
+            print('Too much input arguments')
+    elif command == 'delete':
+        if len(sys.argv) == 2:
+            # Delete all content from shelve
+            mcb_shelf.clear()
+        elif len(sys.argv) == 3:
+            # Delete keyword from shelve
+            try:
+                del (mcb_shelf[sys.argv[2]])
+            except KeyError:
+                print('"{}" does not exist'.format(sys.argv[2]))
+        else:
+            print('Too much input arguments')
+    elif command == 'list':
+        # List keywords and load content
+        pyperclip.copy(str(list(mcb_shelf.keys())))
+    else:
+        # Loads keyword to clipboard
+        if sys.argv[1] in mcb_shelf:
+            pyperclip.copy(mcb_shelf[sys.argv[1]])
+        else:
+            print("Unknown command")
 mcb_shelf.close()

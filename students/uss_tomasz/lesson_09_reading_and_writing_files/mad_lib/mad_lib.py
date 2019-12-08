@@ -1,4 +1,6 @@
 import re
+PART_OF_SPEECH = {'ADJECTIVE': 'Enter an adjective:', 'NOUN': 'Enter a noun:', 'ADVERB': 'Enter an adverb:',
+                  'VERB': 'Enter a verb:'}
 try:
     mad_lib_file = open('text.txt', 'r')
     mad_lib_text = mad_lib_file.read()
@@ -6,11 +8,9 @@ try:
     # regex is needed, because string.split() method is not handling 'NOUN.' and 'VERB?' cases
     word_list = re.split(r'(\W)', mad_lib_text)
     new_word_list = []
-    part_of_speech = {'ADJECTIVE': 'Enter an adjective:', 'NOUN': 'Enter a noun:', 'ADVERB': 'Enter an adverb:',
-                      'VERB': 'Enter a verb:'}
     for word in word_list:
-        if word in part_of_speech:
-            new_word_list.append(input(part_of_speech[word]))
+        if word in PART_OF_SPEECH:
+            new_word_list.append(input(PART_OF_SPEECH[word]))
         else:
             new_word_list.append(word)
     new_mad_lib_text = ''.join(new_word_list)
