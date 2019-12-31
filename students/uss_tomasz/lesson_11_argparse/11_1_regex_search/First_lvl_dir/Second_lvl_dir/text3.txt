@@ -1,0 +1,1 @@
+666 The results should be printed to the screen 997

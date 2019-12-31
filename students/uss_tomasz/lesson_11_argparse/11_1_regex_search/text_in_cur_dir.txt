@@ -1,0 +1,1 @@
+Write a program that opens all .txt files in a folder 123
