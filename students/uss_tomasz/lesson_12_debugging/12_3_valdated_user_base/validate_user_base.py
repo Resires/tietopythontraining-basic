@@ -5,7 +5,6 @@ import os
 import re
 import sys
 
-
 EMAIL_REGEX = re.compile(r'''(
     [a-zA-Z0-9._%+-]+  
     @
@@ -40,13 +39,11 @@ def parse_args(args):
     parser.add_argument('-p', action='store', dest='password', help='Password of user.')
     parser.add_argument('-t', action='store', dest='telephone', default='000-000-000', help='Telephone of user.')
     parser.add_argument('-z', action='store', dest='zip_code', default='00-000', help='Zip code of user.')
-    received_args = parser.parse_args(args)
-    if received_args.email is None or received_args.password is None:
+    parameters = parser.parse_args(args)
+    if not parameters.email or not parameters.password:
         return {}
     else:
-        results = {'email': received_args.email, 'password': received_args.password,
-                   'telephone': received_args.telephone, 'zip_code': received_args.zip_code}
-        return results
+        return vars(parameters)
 
 
 def is_record_correct(record_type, record):
@@ -101,17 +98,18 @@ def csv_entry(csv_file_name, registration):
 def execute_script(args, csv_file_name):
     csv_existence_checker(csv_file_name)
     user_input = parse_args(args)
-    if len(user_input) == 0:
+    if not user_input:
         logging.log(logging.WARNING, "Received parameters are missing")
-    else:
-        logging.log(logging.INFO, "Received following registration:")
-        logging.log(logging.INFO, user_input)
-        if not validate_registration(user_input):
-            logging.log(logging.WARNING, "This registration contains wrong record.")
-        else:
-            logging.log(logging.INFO, "This registration is correctly validated by regular expressions.")
-            if not is_registration_inside_csv(csv_file_name, user_input):
-                csv_entry(csv_file_name, user_input)
+        return
+    logging.log(logging.INFO, "Received following registration:")
+    logging.log(logging.INFO, user_input)
+    if not validate_registration(user_input):
+        logging.log(logging.WARNING, "This registration contains wrong record.")
+        return
+    logging.log(logging.INFO, "This registration is correctly validated by regular expressions.")
+    if is_registration_inside_csv(csv_file_name, user_input):
+        logging.log(logging.INFO, "Entry already exists.")
+    csv_entry(csv_file_name, user_input)
 
 
 if __name__ == '__main__':

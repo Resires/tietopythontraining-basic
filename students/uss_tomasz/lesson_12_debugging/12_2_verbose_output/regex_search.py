@@ -9,7 +9,7 @@ def parse_args(args):
     parser = argparse.ArgumentParser('Searching for a specified regex inside all text files in current directory.')
     parser.add_argument('-r', action='store', dest='regex', default=r'\d{3}', help='Store a regular expression.')
     parser.add_argument('-p', action='store', dest='path', default='.', help='Store a path to the dir with files.')
-    parser.add_argument('-v', action='store', dest='verbosity', default=2, type=int, choices=range(3),
+    parser.add_argument('-v', action='store', dest='verbosity', default=0, type=int, choices=range(3),
                         help='Set the level of verbosity. 0=none, 1=critical & error, 2=full')
     parser.add_argument('-n', action='store', dest='log_file_name', default='regex_search_log.txt', type=str,
                         help='Change the name of log file')

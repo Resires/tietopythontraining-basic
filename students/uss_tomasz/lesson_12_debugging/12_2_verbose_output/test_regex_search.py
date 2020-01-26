@@ -64,7 +64,7 @@ class TestRegexSearch:
             print('Impossible to remove: ' + str(e))
 
     def test_parse_args(self):
-        assert parse_args([]) == (r'\d{3}', '.', 2, 'regex_search_log.txt')
+        assert parse_args([]) == (r'\d{3}', '.', 0, 'regex_search_log.txt')
         assert parse_args(['-r', r'\w', '-p', r'First_lvl_dir\Second_lvl_dir', '-v', '1',
                            '-n', 'logger.txt']) == (r'\w', r'First_lvl_dir\Second_lvl_dir', 1, 'logger.txt')
 
@@ -85,20 +85,12 @@ class TestRegexSearch:
                                                   'In file named "text3.txt" there were following occurrence: 997 \n'
 
     def test_verbosity_deactivation(self):
-        # default verbosity => lvl 2 => all messages
+        # default verbosity => lvl 0 => no messages
         execute_script(['-r', r'\d{3}',
                         '-p', self.test_dir,
                         '-n', 'regex_search_log_1.txt'])
         with open(os.path.join(self.test_dir, 'regex_search_log_1.txt'), 'r') as f:
-            assert f.read() == "DEBUG - Following file has a visible DEBUG messages\n" \
-                               "INFO - Following file has a visible INFO messages\n" \
-                               "WARNING - Following file has a visible WARNING messages\n" \
-                               "ERROR - Following file has a visible ERROR messages\n" \
-                               "CRITICAL - Following file has a visible CRITICAL messages\n" \
-                               "INFO - Regex to search: \n" \
-                               "INFO - \\d{3}\n" \
-                               "INFO - In current directory there are following text files: " \
-                               "['regex_search_log_1.txt', 'text1.txt', 'text2.txt', 'text3.txt']\n"
+            assert f.read() == ""
 
         # verbosity lvl 1 => messages are errors and critical
         execute_script(['-r', r'\d{3}',
@@ -108,14 +100,6 @@ class TestRegexSearch:
         with open(os.path.join(self.test_dir, 'regex_search_log_2.txt'), 'r') as f:
             assert f.read() == "ERROR - Following file has a visible ERROR messages\n" \
                                "CRITICAL - Following file has a visible CRITICAL messages\n"
-
-        # verbosity lvl 0 => no messages
-        # execute_script(['-r', r'\d{3}',
-        #               '-p', self.test_dir,
-        #              '-v', '0',
-        #             '-n', 'regex_search_log_3.txt'])
-        # with open(os.path.join(self.test_dir, 'regex_search_log_3.txt'), 'r') as f:
-        #   assert f.read() == ''
 
 
 class TestRegexSearchDefaultDir:
