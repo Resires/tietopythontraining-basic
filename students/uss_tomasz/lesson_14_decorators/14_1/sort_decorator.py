@@ -1,8 +1,6 @@
 def sort_decorator(func):
     def inner_function():
-        temp = func()
-        temp.sort()
-        return temp
+        return sorted(func())
     return inner_function
 
 
